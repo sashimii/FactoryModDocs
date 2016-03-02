@@ -47,7 +47,7 @@ export default class Factory extends React.Component {
   render() {
     const factory = this.props.factoryObject;
     return (
-      <div className="row">
+      <div className="small-12 columns">
         <h4 id={factory.name.replace(' ', '_')}><strong>{factory.name}</strong></h4>
         <div className="small-12 columns">
           {
