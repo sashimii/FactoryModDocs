@@ -9,3 +9,13 @@ Credits to the react-starterify starter pack, because I hate set up time.
 * Design (Needs to look pretty)
 * Search Box
 * More defensive code
+
+## Running this locally:
+
+
+Install dependinces with: `npm install`
+
+For Development: `gulp watch`
+   * Browserify should boot up your default browser and go to the site at localhost:3000
+
+For Build: `gulp build`
