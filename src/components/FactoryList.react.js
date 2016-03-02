@@ -29,7 +29,7 @@ export default class FactoryList extends React.Component {
   render() {
     return (
       <div className="row">
-        <div>
+        <div className="small-12 columns">
           <h3>Factories</h3>
           {
             this._renderFactories()
