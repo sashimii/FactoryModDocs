@@ -19,3 +19,9 @@ For Development: `gulp watch`
    * Browserify should boot up your default browser and go to the site at localhost:3000
 
 For Build: `gulp build`
+
+## FAQ
+
+### Q: What the hell is this voodoo syntax?
+
+Answer: A mixture of ES6 and JSX, which is usually used in React.js projects. We can has `const`s now! Too lazy to link each of those things so just google it.
