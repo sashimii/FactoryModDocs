@@ -9,9 +9,6 @@ import Factory from './Factory.react';
 export default class FactoryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      'factories': {},
-    }
   }
 
   _renderFactories() {

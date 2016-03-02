@@ -17,10 +17,6 @@ export default class Factory extends React.Component {
     }
   }
 
-  _mapRecipes(){
-
-  }
-
   _renderRecipes() {
     const recipeList = [];
     const factory = this.props.factoryObject;
