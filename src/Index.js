@@ -28,9 +28,12 @@ if(JSON.parse(localStorage.getItem('factoryList'))) {
       let factoryList = YAML.parse(res.data);
       const now = new Date();
       const expireDate = new Date(now.getTime() + (4 * 1000 * 60 * 60));
-      localStorage.setItem('factoryConfigExpiry', expireDate);
-      localStorage.setItem('factoryList', JSON.stringify(factoryList));
+      try {
+        localStorage.setItem('factoryConfigExpiry', expireDate);
+        localStorage.setItem('factoryList', JSON.stringify(factoryList));
+      } catch (e) {
 
+      }
       // console.log(factoryList);
       // let factoryMapper = new Mapper(res.data);
       // let cleanData = factoryMapper.getCleanData();
