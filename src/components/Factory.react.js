@@ -56,10 +56,10 @@ export default class Factory extends React.Component {
     const isOpen = this.state.isOpen;
     return (
       <div className="factory-container small-12 large-12 left ">
-        <div className="small-12 large-8 columns">
+        <div className="small-12 large-8">
           <div className="small-12 columns">
-            <div className="small-1 columns"><button className="button button-action button-circle button-small" onClick={this._handleAccordion.bind(this)}><i className={buttonIcon}></i></button></div>
-            <div className="small-8 columns end"><h4 className="point" id={factory.name.replace(' ', '_')} ><strong>{factory.name}</strong></h4></div>
+            <div className="small-1 left"><button className="button button-action button-circle adjust-button" onClick={this._handleAccordion.bind(this)}><i className={buttonIcon}></i></button></div>
+            <div className="small-11 left end adjust-factory-title"><h4 className="point" id={factory.name.replace(' ', '_')} ><strong>{factory.name}</strong></h4></div>
           </div>
           {
             isOpen ? <div className="small-12 columns">{ this._renderRecipes() }</div> : null

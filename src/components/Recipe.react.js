@@ -53,9 +53,9 @@ export default class Recipe extends React.Component {
     const isOpen = this.state.isOpen;
     return (
       <div className="recipe-container small-12 left">
-        <div className="small-11 columns">
-          <div className="small-1 columns"><button className="button button-action button-circle button-tiny" onClick={this._handleAccordion.bind(this)}><i className="fa fa-plus"></i></button></div>
-          <div className="small-8 columns end"> <h5 onClick={this._handleAccordion.bind(this)}>{this.props.recipeData.name || 'Setup Cost'}</h5></div>
+        <div>
+          <div className="small-1 left"><button className="button button-action button-circle button-small adjust-recipe-button" onClick={this._handleAccordion.bind(this)}><i className="fa fa-plus"></i></button></div>
+          <div className="small-10 left end adjust-recipe-title"> <h5 onClick={this._handleAccordion.bind(this)}>{this.props.recipeData.name || 'Setup Cost'}</h5></div>
         </div>
         <div className="small-12 columns">
         {
