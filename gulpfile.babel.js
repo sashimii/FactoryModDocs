@@ -32,7 +32,7 @@ const paths = {
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   srcFonts: 'src/fonts/*',
   srcData: 'src/data/*',
-  dist: 'dist',
+  dist: './dist',
   distJs: 'dist/js',
   distCss: 'dist/styles',
   distImg: 'dist/images',
@@ -116,7 +116,7 @@ gulp.task('data', () =>{
 
 gulp.task('htmlReplace', () => {
   gulp.src('index.html')
-  .pipe(htmlReplace({css: 'styles/main.css', js: 'js/app.js'}))
+  .pipe(htmlReplace({css: 'styles/foundation.css', js: 'js/app.js'}))
   .pipe(gulp.dest(paths.dist));
 });
 
