@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import YAML from 'yamljs';
 
 
 import Factory from './Factory.react';
@@ -25,6 +24,8 @@ export default class FactoryList extends React.Component {
     })
     return factoryList;
   }
+
+
 
   render() {
     return (

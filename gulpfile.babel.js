@@ -12,6 +12,7 @@ import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
+import sass from 'gulp-sass';
 import rename from 'gulp-rename';
 import nested from 'postcss-nested';
 import vars from 'postcss-simple-vars';
@@ -26,12 +27,17 @@ import ghPages from 'gulp-gh-pages';
 const paths = {
   bundle: 'app.js',
   srcJsx: 'src/Index.js',
-  srcCss: 'src/**/*.scss',
+  srcCss: '/src/**/*.scss',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
+  srcFonts: 'src/fonts/*',
+  srcData: 'src/data/*',
   dist: 'dist',
   distJs: 'dist/js',
+  distCss: 'dist/styles',
   distImg: 'dist/images',
+  distFonts: 'dist/fonts',
+  distData: 'dist/js/data',
   distDeploy: './dist/**/*'
 };
 
@@ -85,14 +91,27 @@ gulp.task('browserify', () => {
   .pipe(gulp.dest(paths.distJs));
 });
 
-gulp.task('styles', () => {
-  gulp.src(paths.srcCss)
-  .pipe(rename({extname: ".css"}))
-  .pipe(sourcemaps.init())
-  .pipe(postcss([vars, extend, nested, autoprefixer, cssnano]))
-  .pipe(sourcemaps.write('.'))
-  .pipe(gulp.dest(paths.dist))
+// gulp.task('styles', () => {
+//   gulp.src(paths.srcCss)
+//   .pipe(sourcemaps.init())
+//   .pipe(postcss([vars, extend, nested, autoprefixer, cssnano]))
+//   .pipe(sourcemaps.write('.'))
+//   .pipe(rename({extname: ".css"}))
+//   .pipe(gulp.dest(paths.dist))
+//   .pipe(reload({stream: true}));
+// });
+
+gulp.task('sass', () => {
+  gulp.src('./src/styles/*.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest('./dist/styles'))
   .pipe(reload({stream: true}));
+});
+
+gulp.task('data', () =>{
+  gulp.src(paths.srcData)
+    .pipe(gulp.dest(paths.distData))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('htmlReplace', () => {
@@ -109,6 +128,11 @@ gulp.task('images', () => {
       use: [pngquant()]
     }))
     .pipe(gulp.dest(paths.distImg));
+});
+
+gulp.task('fonts', () => {
+  gulp.src(paths.srcFonts)
+    .pipe(gulp.dest(paths.distFonts));
 });
 
 gulp.task('lint', () => {
@@ -128,10 +152,10 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('watch', cb => {
-  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles', 'lint', 'images'], cb);
+  runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'sass', 'data', 'fonts', 'lint', 'images'], cb);
 });
 
 gulp.task('build', cb => {
   process.env.NODE_ENV = 'production';
-  runSequence('clean', ['browserify', 'styles', 'htmlReplace', 'images'], cb);
+  runSequence('clean', ['browserify', 'sass', 'data', 'htmlReplace', 'fonts', 'images'], cb);
 });

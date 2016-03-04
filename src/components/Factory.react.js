@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 import Recipe from './Recipe.react';
 
 export default class Factory extends React.Component {
@@ -8,7 +10,9 @@ export default class Factory extends React.Component {
     super(props);
     this.state = {
       isBasicContraption: false,
+      isOpen: false,
     }
+
   }
 
   componentDidMount() {
@@ -40,18 +44,25 @@ export default class Factory extends React.Component {
     }
   }
 
-
-
-
+  _handleAccordion(event) {
+    if(event.type === 'click') {
+      this.setState({isOpen: !this.state.isOpen});
+    }
+  }
 
   render() {
+    const buttonIcon = isOpen ? 'fa fa-minus' : 'fa fa-plus';
     const factory = this.props.factoryObject;
+    const isOpen = this.state.isOpen;
     return (
-      <div className="small-12 columns">
-        <h4 id={factory.name.replace(' ', '_')}><strong>{factory.name}</strong></h4>
-        <div className="small-12 columns">
+      <div className="factory-container small-12 large-12 left ">
+        <div className="small-12 large-8 columns">
+          <div className="small-12 columns">
+            <div className="small-1 columns"><button className="button button-action button-circle button-small" onClick={this._handleAccordion.bind(this)}><i className={buttonIcon}></i></button></div>
+            <div className="small-8 columns end"><h4 className="point" id={factory.name.replace(' ', '_')} ><strong>{factory.name}</strong></h4></div>
+          </div>
           {
-            this._renderRecipes()
+            isOpen ? <div className="small-12 columns">{ this._renderRecipes() }</div> : null
           }
         </div>
       </div>
