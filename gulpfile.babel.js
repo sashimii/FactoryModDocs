@@ -151,7 +151,7 @@ gulp.task('deploy', function() {
     .pipe(ghPages());
 });
 
-gulp.task('watch', cb => {
+gulp.task('default', cb => {
   runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'sass', 'data', 'fonts', 'lint', 'images'], cb);
 });
 

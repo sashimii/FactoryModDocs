@@ -10,6 +10,15 @@ import Mapper from './components/mapper'
 import axios from 'axios';
 
 
+// Get Materials Data
+axios.get('/js/data/materials.json')
+  .then((res) => {
+    console.log(JSON.stringify(res.data));
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+
 if(new Date(localStorage.getItem('factoryConfigExpiry')) < new Date().getTime()) {
   localStorage.removeItem('factoryList');
 }
